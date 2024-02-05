@@ -34,25 +34,26 @@ Pipeline
 
 Data modeling
 
-Pipeline
-Learn Airflow with this 80% off coupon: https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow/?couponCode=AIRFLOWRETAIL
-Prerequisites
 Docker
 Astro CLI
 Soda
 GC account
-Steps
-IMPORTANT!
+
+
+# Steps
+## IMPORTANT!
 
 Open the Dockerfile and make sure you use quay.io/astronomer/astro-runtime:8.8.0 in the Dockerfile (or airflow 2.6.1), If not, use that version and restart Airflow (astro dev restart with the Astro CLI)
-Download the dataset https://www.kaggle.com/datasets/tunguz/online-retail
-Store the csv file in include/dataset/online_retail.csv
-In requirements.txt, add apache-airflow-providers-google==10.3.0 restart Airflow.
-Create a GCS bucket with a unique name <your_name>_online_retail
-Create a service account with a name airflow-online-retail
-Grant admin access to GCS + BigQuery
-Click on the service account → Keys → Add Key → Copy the JSON content
-Create a new file service_account.json in include/gcp/
+- Download the dataset https://www.kaggle.com/datasets/tunguz/online-retail
+- Store the csv file in include/dataset/online_retail.csv
+- In requirements.txt, add apache-airflow-providers-google==10.3.0 restart Airflow.
+- Create a GCS bucket with a unique name <your_name>_online_retail
+- Create a service account with a name airflow-online-retail
+- Grant admin access to GCS + BigQuery
+- Click on the service account → Keys → Add Key → Copy the JSON content
+- Create a new file service_account.json in include/gcp/
+
+
 # include/gcp/service_account.json
 
 {
@@ -69,13 +70,15 @@ Create a new file service_account.json in include/gcp/
     "universe_domain": "googleapis.com"
 }service_accountservice_account
 ​
-Airflow → Admin → Connections
-id: gcp
-type: Google Cloud
-Keypath Path: /usr/local/airflow/include/gcp/service_account.json
-Test the connection → Save (from 2.7 must be turned on)
-Create the DAG
-# retail.py
+### Airflow → Admin → Connections
+- id: gcp
+- type: Google Cloud
+- Keypath Path: /usr/local/airflow/include/gcp/service_account.json
+- Test the connection → Save (from 2.7 must be turned on)
+- Create the DAG
+
+
+# retail.py:
 
 from airflow.decorators import dag, task
 from datetime import datetime
@@ -135,12 +138,12 @@ gcs_to_raw = aql.load_file(
         use_native_support=False,
     )
 ​
-🏆 Data loaded into the warehouse!
-Install Soda Core
-In requirements.txt
-soda-core-bigquery==3.0.45
+### 🏆 Data loaded into the warehouse!
+- Install Soda Core
+- In requirements.txt
+- soda-core-bigquery==3.0.45
 ​
-Create a configuration.yml
+### Create a configuration.yml
 -- include/soda/configuration.yml
 data_source retail:
   type: bigquery
