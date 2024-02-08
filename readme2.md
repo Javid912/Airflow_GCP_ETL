@@ -62,7 +62,8 @@ The dataset for this project is available on Kaggle and can be accessed [here](h
 **Note:** The reports section is yet to be completed.
 
 
-    - [ ]  In `include/dbt/models/report`
+- [ ]  In `include/dbt/models/report`
+
         ```sql
         -- daily_revenue.sql
         
