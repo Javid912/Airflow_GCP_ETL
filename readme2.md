@@ -20,9 +20,12 @@ The dataset for this project is available on Kaggle and can be accessed [here](h
 
 ## Pipeline
 
+![Data Pipeline](https://github.com/Javid912/Airflow_GCP_ETL/blob/main/images/image1.png)
+
+
 ### Data Modeling
 
-![Data Modeling](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b2b83771-d029-4c3f-bd46-a34916b83dd9/Screenshot_2023-07-13_at_16.59.35.png)
+![Data Modeling](https://github.com/Javid912/Airflow_GCP_ETL/blob/main/images/image2.png)
 
 ## Prerequisites
 
@@ -152,7 +155,7 @@ The dataset for this project is available on Kaggle and can be accessed [here](h
 
 ## Conclusion
 
-Congratulations! You've successfully set up a data pipeline for the retail project. Here's what you've accomplished:
+Congratulations! seting up a data pipeline for the retail project is finished. Here's what was accomplished:
 
 1. **Dataset Acquisition**: Obtained the dataset from Kaggle.
 2. **Data Modeling**: Defined a data model and transformed the raw data into structured tables using dbt.
@@ -160,5 +163,4 @@ Congratulations! You've successfully set up a data pipeline for the retail proje
 4. **Reports**: Created SQL queries to generate daily, monthly, and country-wise revenue reports.
 5. **Visualization**: Developed a visualization to display revenue by country using Plotly.
 
-Feel free to explore and expand upon this project further. Happy data engineering!
 
