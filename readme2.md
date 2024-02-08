@@ -62,57 +62,57 @@ The dataset for this project is available on Kaggle and can be accessed [here](h
 **Note:** The reports section is yet to be completed.
 
 
-- [ ]  In `include/dbt/models/report`
+- [ ] In `include/dbt/models/report`
 
-        ```sql
-        -- daily_revenue.sql
-        
-        -- Get daily revenue
-        SELECT
-            date_part('date', datetime) AS date,
-            SUM(total) AS revenue
-        FROM fct_invoices
-        WHERE datetime BETWEEN TIMESTAMP_TRUNC(TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY), DAY) AND TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY)
-        GROUP BY date
-        ```
-        
-        ```sql
-        -- monthly_revenue.sql
-        
-        -- Get monthly revenue
-        SELECT
-            EXTRACT(YEAR FROM datetime) AS year,
-            EXTRACT(MONTH FROM datetime) AS month,
-            SUM(total) AS revenue
-        FROM fct_invoices
-        WHERE datetime BETWEEN TIMESTAMP_TRUNC(TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 12 MONTH), MONTH) AND TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), MONTH)
-        GROUP BY year, month
-        ```
-        
-        ```sql
-        -- country_revenue.sql
-        
-        -- Get revenue by country
-        SELECT
-            dc.iso,
-            SUM(total) AS revenue
-        FROM fct_invoices fi
-        INNER JOIN dim_customer dc ON fi.customer_id = dc.customer_id
-        GROUP BY dc.iso
-        ```
-        
-    - [ ]  Test the reports
-        
-        ```bash
-        astro dev bash
-        dbt run --models report
-        ```
-        
-    **🏆 First dbt reports in place!**
+    ```sql
+    -- daily_revenue.sql
+    
+    -- Get daily revenue
+    SELECT
+        date_part('date', datetime) AS date,
+        SUM(total) AS revenue
+    FROM fct_invoices
+    WHERE datetime BETWEEN TIMESTAMP_TRUNC(TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY), DAY) AND TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY)
+    GROUP BY date
+    ```
+    
+    ```sql
+    -- monthly_revenue.sql
+    
+    -- Get monthly revenue
+    SELECT
+        EXTRACT(YEAR FROM datetime) AS year,
+        EXTRACT(MONTH FROM datetime) AS month,
+        SUM(total) AS revenue
+    FROM fct_invoices
+    WHERE datetime BETWEEN TIMESTAMP_TRUNC(TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 12 MONTH), MONTH) AND TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), MONTH)
+    GROUP BY year, month
+    ```
+    
+    ```sql
+    -- country_revenue.sql
+    
+    -- Get revenue by country
+    SELECT
+        dc.iso,
+        SUM(total) AS revenue
+    FROM fct_invoices fi
+    INNER JOIN dim_customer dc ON fi.customer_id = dc.customer_id
+    GROUP BY dc.iso
+    ```
+    
+- [ ] Test the reports
+    
+    ```bash
+    astro dev bash
+    dbt run --models report
+    ```
+    
+    **🏆 First dbt reports in place!**
     
 ### Visualization
 
-- [ ]  Install Google Cloud SDK
+- [ ] Install Google Cloud SDK
     
     ```bash
     # Google Cloud SDK
@@ -122,7 +122,7 @@ The dataset for this project is available on Kaggle and can be accessed [here](h
     apt-get install google-cloud-sdk -y
     ```
     
-- [ ]  Create a new file `include/viz/plotly.py`
+- [ ] Create a new file `include/viz/plotly.py`
     
     ```python
     import plotly.express as px
@@ -145,23 +145,21 @@ The dataset for this project is available on Kaggle and can be accessed [here](h
         fig.show()
     ```
     
-- [ ]  Test the visualization
+- [ ] Test the visualization
     
     ```bash
     astro dev bash
     python include/viz/plotly.py
     ```
     
-**🏆 First visualization in place!**
+**🏆 First visualization in place!**
 
 ## Conclusion
 
-Congratulations! seting up a data pipeline for the retail project is finished. Here's what was accomplished:
+Congratulations! Setting up a data pipeline for the retail project is finished. Here's what was accomplished:
 
 1. **Dataset Acquisition**: Obtained the dataset from Kaggle.
 2. **Data Modeling**: Defined a data model and transformed the raw data into structured tables using dbt.
 3. **Data Quality**: Implemented data quality checks to ensure the integrity of the data.
 4. **Reports**: Created SQL queries to generate daily, monthly, and country-wise revenue reports.
 5. **Visualization**: Developed a visualization to display revenue by country using Plotly.
-
-
