@@ -34,18 +34,21 @@ def retail():
     )
 
     gcs_to_raw = aql.load_file(
-        task_id='gcs_to_raw',
+        task_id='gcp_to_raw',
         input_file=File(
-            'gs://marclamberti_online_retail/raw/online_retail.csv',
-            conn_id='gcp',
+            'gs://javadsatoungar_online_retail/raw/online_retail.csv',
+             con_id='gcp',
             filetype=FileType.CSV,
         ),
-        output_table=Table(
+        output=Table(
             name='raw_invoices',
             conn_id='gcp',
             metadata=Metadata(schema='retail')
         ),
-        use_native_support=False,
+        user_native_suport=False,
+        
     )
+
+
     
 retail()
