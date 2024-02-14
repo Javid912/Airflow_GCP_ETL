@@ -1,11 +1,10 @@
-# retail.py
 
 from airflow.decorators import dag, task
 from datetime import datetime
 
 from airflow.providers.google.cloud.transfers.local_to_gcs import LocalFilesystemToGCSOperator
 from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateEmptyDatasetOperator
-from astro import sql as sql
+from astro import sql as aql
 from astro.files import File
 from astro.sql.table import Table, Metadata
 from astro.constants import FileType
@@ -34,21 +33,19 @@ def retail():
     )
 
     gcs_to_raw = aql.load_file(
-        task_id='gcp_to_raw',
+        task_id='gcs_to_raw',
         input_file=File(
             'gs://javadsatoungar_online_retail/raw/online_retail.csv',
-             con_id='gcp',
+            conn_id='gcp',
             filetype=FileType.CSV,
         ),
-        output=Table(
+        output_table=Table(
             name='raw_invoices',
             conn_id='gcp',
             metadata=Metadata(schema='retail')
         ),
-        user_native_suport=False,
-        
+        use_native_support=False,
     )
-
 
     
 retail()
