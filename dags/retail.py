@@ -50,5 +50,5 @@ def retail():
     def check_load(scan_name='check_load', checks_subpath='sources'):
         from include.soda.check_function import check
         return check(scan_name, checks_subpath)
-    
+    check_load()
 retail()
