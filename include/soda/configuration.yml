@@ -1,4 +1,4 @@
--- include/soda/configuration.yml
+
 data_source retail:
   type: bigquery
   connection:
@@ -9,3 +9,8 @@ data_source retail:
     - https://www.googleapis.com/auth/drive
     project_id: 'my-new-gcp-project-406521'
     dataset: retail
+
+soda_cloud:
+  host: cloud.soda.io
+  api_key_id: e20c4938-dee4-433e-8ec4-24a0da473952
+  api_key_secret: fj0KuBbYAjyCTjja7f78s4m0sPGHr7B2bQzsfmJH3xHxKpZ5JABB7Q
